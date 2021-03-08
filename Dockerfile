@@ -1,15 +1,21 @@
-FROM node:15
+FROM node:15 as builder
 
 WORKDIR /usr/src/app
 
-RUN git clone https://github.com/PoloLacoste/ecolab-climat.git
+COPY ./ecolab-climat ./ecolab-climat
 
-RUN git clone https://github.com/PoloLacoste/ecolab-data.git
+COPY ./ecolab-data ./ecolab-data
 
 WORKDIR /usr/src/app/ecolab-climat
 
-RUN npm install -g yarn
-
 RUN yarn
 
-CMD ["yarn", "start"]
+RUN yarn run compile
+
+FROM nginx as prod
+
+WORKDIR /usr/src/app
+
+COPY --from=builder /usr/src/app/ecolab-climat/dist .
+
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
