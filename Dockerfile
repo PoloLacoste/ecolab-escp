@@ -6,7 +6,7 @@ COPY ./nosgestesclimat-site ./nosgestesclimat-site
 
 COPY ./nosgestesclimat ./nosgestesclimat
 
-WORKDIR /usr/src/app/ecolab-climat
+WORKDIR /usr/src/app/nosgestesclimat-site
 
 RUN yarn
 
