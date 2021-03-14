@@ -2,9 +2,9 @@ FROM node:15 as builder
 
 WORKDIR /usr/src/app
 
-COPY ./ecolab-climat ./ecolab-climat
+COPY ./nosgestesclimat-site ./nosgestesclimat-site
 
-COPY ./ecolab-data ./ecolab-data
+COPY ./nosgestesclimat ./nosgestesclimat
 
 WORKDIR /usr/src/app/ecolab-climat
 
@@ -16,6 +16,6 @@ FROM nginx as prod
 
 WORKDIR /usr/src/app
 
-COPY --from=builder /usr/src/app/ecolab-climat/dist .
+COPY --from=builder /usr/src/app/nosgestesclimat-site/dist .
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
