@@ -13,11 +13,11 @@ docker build -t datagir-escp .
 ```
 
 ```bash
-docker run --name datagir-escp datagir-escp
+docker run --name datagir-escp -p 80:80 datagir-escp
 ```
 
 ```bash
-docker cp datagir-escp:/usr/src/app/ ./nosgestesclimat-site/dist
+docker cp datagir-escp:/usr/src/app/. ./nosgestesclimat-site/dist
 ```
 
 ```bash
